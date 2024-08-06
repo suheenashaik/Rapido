@@ -3,15 +3,20 @@
 Rapido is a ride-booking application featuring a Java backend and a frontend built with HTML, CSS, and JavaScript. The app includes separate registration panels for users and drivers.
 
 # Features
-**User Registration**: Users can register through the User Panel on the home screen.
+**User Registration**: Users can register through the User Panel on the home screen.  \n
 **Driver Registration**: Drivers can register through the Driver Panel on the home screen.
+# User Flow
+# Registration:
+
+**.**After successful registration, users can book a ride by entering their mobile number.
+If the mobile number is registered as a user, they will be navigated to the book ride page.
+Ride Booking Process:
+
+After successful booking, users will be redirected to the "Waiting for Bike" page.
+After 1 minute, a notification will appear saying "Your ride has started," and the riding page will be displayed.
+After 30 minutes, a notification will indicate that the ride has ended, and users will be directed to the ride-ended page.
+A final notification will prompt users to rate their recent ride before navigating back to the home page.
 Screenshots
-
-"C:\Users\satis\Pictures\Screenshots\Screenshot (124).png"
-
-"C:\Users\satis\Pictures\Screenshots\Screenshot (124).png"
-
-![Screenshot (123)](https://github.com/user-attachments/assets/aa10e022-1d90-4d3e-ae41-45c1b9d72ca1)
 
 after succsessful registration when user clicks the book a ride then through mobile number if the user is user then we will navigate to book ride page after succsessful booking of ride next we will navigate to waiting for bike page then after 1 minute we will notification that your ride has started then riding page will bw displayed after 30 1 min we will display notification of your ride has ended then we will navigate to the ride endend page then we will give another notification saying dont forget to rate your recent ride then agin navigate to home page 
 
