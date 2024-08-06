@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FEMALE TAXI BOOKING- Book a Ride</title>
+    <style>
+        /* Basic Styling (same as before) */
+        body {             font-family: Arial, sans
+        serif;             margin: 0;
+            padding: 0;
+        }         header {
+                      background-color:
+                              #b01832; /* blue color */             color: white;
+                      padding: 20px;             text-align: center;
+
+                  }         nav {
+                                background-color: #f0f0f0;
+                                padding: 10px 0;             text-align:
+                    center;
+                            }         nav a {
+                                          text-decoration: none;
+                                          color: #333;
+                                          10px 20px;
+                                      }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding:
+            padding: 20px;             text
+        align: center;
+        }         form {
+                      margin-top: 20px;
+                      text-align: left;
+                  }         label {
+                                display: block;
+                                margin-bottom: 5px;
+                            }
+        input[type="text"],
+        input[type="datetime-local"] {
+            width: 100%;             padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            sizing: border-box;
+            box
+        }
+        input[type="submit"] {             background
+        color: #ff69b4; /* Pink color */             color: white;
+            border: none;             padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            uppercase;
+        }
+        cursor: pointer;
+        text-transform:
+        input[type="submit"]:hover {
+            #d62c6d; /* Darker pink color */
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Welcome to FEMALE TAXI BOOKING</h1>
+</header>
+<nav>
+    <a href="homepage.html">Home</a>
+    <a href="indexpage.html">Book a Ride</a>
+    <a href="SAFETY MEASURES.html">Safety Features</a>
+    <a href="HELP.html">Help/Support</a>
+    <a href="PROMOTIONS.html">Promotions</a>
+</nav>
+<div class="container">
+    <h2>Book a Ride</h2>
+    <form id="ride-form">
+        <label for="pickup">Pickup Location:</label>
+        <input type="text" id="pickup" name="pickup" required>
+        <label for="destination">Destination:</label>
+        <input type="text" id="destination" name="destination" required>
+        <label for="datetime">Date and Time:</label>
+        <input type="datetime-local" id="datetime" name="datetime" required>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+<script>
+    document.getElementById('ride-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        const username=localStorage.getItem('username');
+        const mobilenumber=localStorage.getItem('mobileNumber');
+        const pickUpLocation = document.getElementById('pickup').value;
+        const dropOffLocation = document.getElementById('destination').value;
+        const pickUpDate = document.getElementById('datetime').value;
+
+        // Create the request payload
+        const requestData = {
+            userName:username,
+            mobileNumber:mobilenumber,
+            pickUpLocation: pickUpLocation,
+            dropOffLocation: dropOffLocation,
+            pickUpDate: pickUpDate
+        };
+
+        // Send the data to the backend API
+        fetch('http://localhost:9696/ride/bookRide', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestData)
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.text();  // Get the plain text response
+                } else {
+                    throw new Error('Failed to book the ride');
+                }
+            })
+            .then(data => {
+                alert(data);  // Display the plain text response (e.g., "Book Ride created")
+                alert('Your ride has been confirmed!\n\nYour rider will arrive in 5 minutes.');
+
+                // Redirect to waiting time page
+                window.location.href = 'http://localhost:9696/waitingForBike';
+
+                // Set a timeout to redirect to riding start page after 1 minute
+                setTimeout(() => {
+                    // Note: The page will change to waitingTime before this timeout is triggered
+                    // You might need to handle this redirection on the waitingTime page if necessary
+                    window.location.href = 'http://localhost:9696/ridingStart';
+                }, 60000);  // 60000 milliseconds = 1 minute
+            })
+            .catch(error => {
+                alert('Error: ' + error.message);
+                console.error('Error:', error);
+            });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+    }
+    .container {
+        max-width: 500px;
+        margin: 50px auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+        text-align: center;
+    }
+    label {
+        display: block;
+        font-weight: bold;
+    }
+    .login {
+        background-color: limegreen;
+        color: white;
+        padding: 16px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        opacity: 0.9;
+    }
+    .login:hover {
+        opacity: 1;
+    }
+    input[type="number"], input[type="text"], select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    input[type="submit"] {
+        width: 100%;
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    input[type="number"], input[type="text"] {
+        -moz-appearance: textfield;
+    }
+</style>
+<body>
+<div class="container">
+    <h1 style="text-align: center">Login</h1>
+    <form id="loginForm">
+        <div class="form-group">
+            <label for="username">User Name:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+            <label for="mobileNumber"><b>Mobile Number</b></label>
+            <input type="number" placeholder="Enter Mobile Number" name="mobileNumber" id="mobileNumber" required />
+        </div>
+        <button type="submit" class="login">Login</button>
+    </form>
+</div>
+<script>
+    async function submitForm(event) {
+        event.preventDefault();
+
+
+        const form = document.getElementById('loginForm');
+        const username = document.getElementById('username').value;
+        localStorage.setItem("username",username);
+        const mobileNumber = document.getElementById('mobileNumber').value;
+        localStorage.setItem("mobileNumber", mobileNumber);
+
+        const payload = {
+            username: username,
+            mobileNumber: mobileNumber
+        };
+
+        try {
+            const response = await fetch('http://localhost:9696/registration/userLogin', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
+            });
+
+            if (response.ok) {
+                const url = await response.text();
+                if (url === 'login') {
+                    alert('Login failed. Please check inputs again.');
+                } else {
+                    window.location.href = url; // Redirect to the URL provided by the server
+                }
+            } else {
+                alert('Error: ' + await response.text());
+            }
+        } catch (error) {
+            console.error('Fetch error:', error);
+            alert('Error: ' + error.message);
+        }
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', submitForm);
+</script>
+</body>
+</html>

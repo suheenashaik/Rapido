@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="file"], select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: 100%;
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Registration Form</h2>
+    <form id="registrationForm" action="location.html" method="POST">
+        <div class="form-group">
+            <label for="UserName">Name:</label>
+            <input type="text" id="UserName" name="UserName" required>
+        </div>
+        <div class="form-group">
+            <label for="aadharNumber">Aadhar Number:</label>
+            <input type="text" id="aadharNumber" name="aadharNumber" required />
+        </div>
+        <div class="form-group">
+            <label for="aadharImage">Aadhar Image</label>
+            <input type="file" id="aadharImage" name="aadharImage" accept=".jpg, .jpeg, .png, .pdf" required />
+        </div>
+        <div class="form-group">
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="">Select</option>
+                <option value="MALE">MALE</option>
+                <option value="FEMALE">FEMALE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="mobileNumber">Mobile No:</label>
+            <input type="text" id="mobileNumber" name="mobileNumber" required>
+        </div>
+        <input type="submit" value="Register">
+    </form>
+</div>
+<script>
+    document.getElementById('registrationForm').addEventListener('submit', async function(event) {
+        event.preventDefault();
+        const form = document.getElementById('registrationForm');
+        const formData = new FormData(form);
+
+        try {
+            const response = await fetch('http://localhost:9696/registration/UserRegistration', {
+                method: 'POST',
+                body: formData
+            });
+
+            const contentType = response.headers.get('content-type');
+            if (!response.ok) {
+                let errorText;
+                if (contentType && contentType.includes('application/json')) {
+                    const errorData = await response.json();
+                    errorText = errorData.message || JSON.stringify(errorData);
+                } else {
+                    errorText = await response.text();
+                }
+                console.error('Error:', errorText);
+                alert('Registration failed: ' + errorText);
+
+            } else {
+                if (contentType && contentType.includes('application/json')) {
+                    const data = await response.json();
+                    console.log('Success:', data);
+                    alert('Registration successful');
+                    window.location.href = 'http://localhost:9696/home';
+                } else {
+                    const successText = await response.text();
+                    console.log('Success:', successText);
+                    alert('Registration successful: ' + successText);
+                    window.location.href = 'http://localhost:9696/home';
+                }
+            }
+        } catch (error) {
+            console.error('Fetch error:', error);
+            alert('Error: ' + error.message);
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waiting For Bike</title>
+    <style>
+        /* Basic styles to center the GIFs and give some space between them */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .image-container {
+            display: flex;
+            align-items: center;
+            background-color: white;
+        }
+
+        .left-image, .right-image {
+            width: 50%;
+            height: auto;
+            background-color: white;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="image-container">
+
+    <img src="images/bike.gif" alt="Motorbike Girl GIF" class="left-image">
+    <img src="images/phone.gif" alt="Phone Girl GIF" class="right-image">
+</div>
+
+<script>
+    const name=localStorage.getItem('username')
+    // Redirect to the riding start page after 1 minute
+    setTimeout(() => {
+        alert(name+' '+'Your ride has started!');
+        window.location.href = 'http://localhost:9696/ridingStart';
+    }, 20000);  // 60000 milliseconds = 1 minute
+</script>
+</body>
+</html>
