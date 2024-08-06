@@ -10,6 +10,7 @@ Rapido is a ride-booking application featuring a Java backend and a frontend bui
 
 + After successful registration, users can book a ride by entering their mobile number.<br>
 + If the mobile number is registered as a user, they will be navigated to the book ride page.<br>
+<br>
  **Ride Booking Process**:
 
 + After successful booking, users will be redirected to the "Waiting for Bike" page.<br>
