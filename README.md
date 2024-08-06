@@ -53,6 +53,8 @@ Rapido is a ride-booking application featuring a Java backend and a frontend bui
 + If the driver has any active rides, they can confirm and start the ride.<br>
 
 # Screenshots
+![Screenshot (125)](https://github.com/user-attachments/assets/36c1eb70-cf96-479d-bef7-f0c22a128ec0)
+
 ![Screenshot (126)](https://github.com/user-attachments/assets/f2810a53-a64f-4835-aae0-0a77a587e756)
 
 ![Screenshot (134)](https://github.com/user-attachments/assets/81028d14-6b4b-4269-ba60-c3c2517a390e)
