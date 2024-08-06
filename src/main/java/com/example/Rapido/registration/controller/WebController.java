@@ -66,5 +66,10 @@ public class WebController {
     public String showRidingEnd() {
         return "rideEnd";
     }
+    @CrossOrigin
+    @GetMapping("/driverStarted")
+    public String showDriverStarted() {
+        return "DriverStarted";
+    }
 }
 

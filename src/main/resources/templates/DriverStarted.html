@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ride End</title>
+    <title>Waiting For Bike</title>
     <style>
         /* Basic styles to center the GIFs and give some space between them */
         body {
@@ -13,7 +13,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: white;
+            background-color: #f0f0f0;
         }
 
         .image-container {
@@ -34,17 +34,17 @@
 
 <div class="image-container">
 
-     <img src="images/payingbill.gif" alt="Motorbike Girl GIF" class="left-image">
-     <img src="images/image.jpg" alt="Phone Girl GIF" class="right-image">
+    <img src="images/bike.gif" alt="Motorbike Girl GIF" class="left-image">
+    <img src="images/phone.gif" alt="Phone Girl GIF" class="right-image">
 </div>
 
 <script>
-  const name=localStorage.getItem('username');
-        alert(name+' '+'Your ride has ended !');
-  setTimeout(() => {
-        alert("Don't forget to rate your recent ride!");
-      window.location.href = 'http://localhost:9696/home';
-  }, 10000);
+    const name=localStorage.getItem('username')
+    // Redirect to the riding start page after 1 minute
+    setTimeout(() => {
+        alert(name+' '+'please click ok if you received the customer');
+        window.location.href = 'http://localhost:9696/ridingStart';
+    }, 20000);  // 60000 milliseconds = 1 minute
 </script>
 </body>
 </html>

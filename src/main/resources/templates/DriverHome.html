@@ -3,8 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Driver DashBoard</title>
+    <style>
+        /* Basic styles to center the GIFs and give some space between them */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: white;
+        }
+
+        .image-container {
+            display: flex;
+            align-items: center;
+            background-color: white;
+        }
+
+        .left-image, .right-image {
+            width: 50%;
+            height: auto;
+            background-color: white;
+        }
+
+    </style>
 </head>
 <body>
-<p>hi Driver have a nice Day </p>
+
+
+<div class="image-container">
+
+    <img src="images/bike.jpg" alt="Motorbike Girl GIF" class="left-image">
+    <img src="images/download.jpg" alt="Phone Girl GIF" class="right-image">
+</div>
+<script>
+    const name=localStorage.getItem('username');
+    setTimeout(() => {
+        alert(name+' '+' customer is waiting click ok to confirm the ride');
+        window.location.href = 'http://localhost:9696/driverStarted';
+    }, 20000);
+</script>
 </body>
 </html>
