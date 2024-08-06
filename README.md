@@ -6,13 +6,13 @@ Rapido is a ride-booking application featuring a Java backend and a frontend bui
 **User Registration**: Users can register through the User Panel on the home screen.<br>
 **Driver Registration**: Drivers can register through the Driver Panel on the home screen.
 # User Flow
- **Registration**:
+**Registration**:
 
 + After successful registration, users can book a ride by entering their mobile number.<br>
 + If the mobile number is registered as a user, they will be navigated to the book ride page.<br>
         
 
-  **Ride Booking Process**:
+**Ride Booking Process**:
 
 + After successful booking, users will be redirected to the "Waiting for Bike" page.<br>
 + After 1 minute, a notification will appear saying "Your ride has started," and the riding page will be displayed.<br>
@@ -20,7 +20,7 @@ Rapido is a ride-booking application featuring a Java backend and a frontend bui
 + A final notification will prompt users to rate their recent ride before navigating back to the home page.<br>
 
 # Screenshots
-**User Registration and Ride Booking Flow**:
+**User Registration and Ride Booking Flow**: <br>
 ![Screenshot (123)](https://github.com/user-attachments/assets/dc603226-c647-40b7-8b88-165484f8a4d1)
 
 ![Screenshot (124)](https://github.com/user-attachments/assets/20f2b5c3-e2b5-40f6-891f-d625be1e6478)
